@@ -7,4 +7,6 @@
 
 # Visual Studio Code
 .vscode/
+
+#env file
 .env
