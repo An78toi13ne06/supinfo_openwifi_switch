@@ -9,6 +9,7 @@ import argparse, getpass, paramiko, socket, time, os
 from paramiko import *
 from subprocess import DEVNULL, STDOUT, check_call
 
+
 # Parsing Help
 parser = argparse.ArgumentParser(prog="Open-Wifi De/Activator", description="de/activation of SUPINFO OpenWiFi Network")
 parser.add_argument('-a', '--activate', help="Use this option to activate the Open-WiFi", action='store_true')
@@ -22,6 +23,7 @@ choice = ''
 option = ''
 action = ''
 host = []
+ips = []
 
 # Setting 'choice' variable with correct action
 if args.deactivate:
@@ -34,8 +36,15 @@ else:
     print("You must indicate if you want to activate or deactivate Wifi with the correct argument (-a, -d)")
     exit()
 
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+
 # Put here IPs of WiFi controllers
-ips = [#### TO DO ADD IPS #####]
+ips = os.getenv('IPS')
 
 
 print('\n***********************************************\n'
