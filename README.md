@@ -1,4 +1,4 @@
-# SUPINFO OPEN-WiFi De/Activator
+# SUPINFO Open-WiFi De/Activator
 
 Python script for SUPINFO-OpenWiFi De/activation
 
