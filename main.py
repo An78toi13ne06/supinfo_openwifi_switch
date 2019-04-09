@@ -28,12 +28,12 @@ sysos = platform.system()
 is_up = False
 
 # Setting 'choice' variable with correct action
-if args.deactivate:
-    option = 'no ssid SUPINFO-OpenWiFi'
-    action = 'Deactivating'
-elif args.activate:
+if args.activate:
     option = 'ssid SUPINFO-OpenWiFi'
     action = 'Activating'
+elif args.deactivate:
+    option = 'no ssid SUPINFO-OpenWiFi'
+    action = 'Deactivating'
 else:
     print("You must indicate if you want to activate or deactivate Wifi with the correct argument (-a, -d)")
     exit()
