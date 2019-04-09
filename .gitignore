@@ -11,5 +11,5 @@
 #env file
 .env
 
-#test files
-ping_test.py
+#test file
+test.py
