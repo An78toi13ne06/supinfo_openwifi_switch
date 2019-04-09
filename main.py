@@ -7,7 +7,7 @@ if sys.version_info < (3, 5):
 
 import argparse, getpass, paramiko, socket, time, os, platform
 from paramiko import SSHClient, SSHException, BadHostKeyException, AuthenticationException
-from subprocess import DEVNULL, STDOUT, check_call, CalledProcessError
+from subprocess import check_call, CalledProcessError
 
 # Parsing Help
 parser = argparse.ArgumentParser(prog="Open-Wifi De/Activator", description="de/activation of SUPINFO OpenWiFi Network")
