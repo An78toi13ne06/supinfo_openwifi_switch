@@ -2,7 +2,7 @@ import sys, platform
 
 if sys.version_info < (3, 5):
     print("You are running a too old version of python. (" + platform.python_version() + ")\n"
-                                                                                         "Please consider upgrading your Python installation to at least 3.5")
+        "Please consider upgrading your Python installation to at least 3.5")
     exit()
 
 import argparse, getpass, paramiko, socket, time, os, platform
