@@ -64,6 +64,8 @@ print('\n***********************************************\n'
       '***********************************************\n')
 
 # Check if SUPINFO's servers are accessible
+print("Checking SUPINFO's DNS availability...")
+
 if (sysos == "Windows"):
     with open(os.devnull, 'w') as DEVNULL:
         try:
@@ -126,53 +128,53 @@ for ip in ips:
         # Turn off paging
         chan.send('terminal length 0\n')
         time.sleep(1)
-        resp = chan.recv(9999)
-        output = resp.decode('ascii').split(',')
-        print(''.join(output))
+        #resp = chan.recv(9999)
+        #output = resp.decode('ascii').split(',')
+        #print(''.join(output))
 
         # Enter Configure Terminal
         chan.send('conf t\n')
         time.sleep(2)
-        resp = chan.recv(9999)
-        output = resp.decode('ascii').split(',')
-        print(''.join(output))
+        #resp = chan.recv(9999)
+        #output = resp.decode('ascii').split(',')
+        #print(''.join(output))
 
         for i in range(2):
 
             # Enter Interface
             chan.send('interface dot11Radio ' + str(i) + '\n')
             time.sleep(2)
-            resp = chan.recv(9999)
-            output = resp.decode('ascii').split(',')
-            print(''.join(output))
+            #resp = chan.recv(9999)
+            #output = resp.decode('ascii').split(',')
+            #print(''.join(output))
 
             # (De)Activating Open-WiFi
             chan.send(option + '\n')
             time.sleep(5)
-            resp = chan.recv(9999)
-            output = resp.decode('ascii').split(',')
-            print(''.join(output))
+            #resp = chan.recv(9999)
+            #output = resp.decode('ascii').split(',')
+            #print(''.join(output))
 
             # Exit from interface configuration
             chan.send('exit\n')
             time.sleep(2)
-            resp = chan.recv(9999)
-            output = resp.decode('ascii').split(',')
-            print(''.join(output))
+            #resp = chan.recv(9999)
+            #output = resp.decode('ascii').split(',')
+            #print(''.join(output))
 
         # Exit from Terminal Configuration
         chan.send('exit\n')
         time.sleep(2)
-        resp = chan.recv(9999)
-        output = resp.decode('ascii').split(',')
-        print(''.join(output))
+        #resp = chan.recv(9999)
+        #output = resp.decode('ascii').split(',')
+        #print(''.join(output))
 
         # Write Configuration
         chan.send('write\n')
         time.sleep(10)
-        resp = chan.recv(9999)
-        output = resp.decode('ascii').split(',')
-        print(''.join(output))
+        #resp = chan.recv(9999)
+        #output = resp.decode('ascii').split(',')
+        #print(''.join(output))
 
         # Closing SSH connection
         ssh.close()
