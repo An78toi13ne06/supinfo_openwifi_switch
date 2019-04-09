@@ -10,3 +10,6 @@
 
 #env file
 .env
+
+#test files
+ping_test.py
