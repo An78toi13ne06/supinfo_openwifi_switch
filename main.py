@@ -5,9 +5,9 @@ if sys.version_info < (3, 5):
           "Please consider upgrading your Python installation to at least 3.5")
     exit()
 
-import argparse, getpass, paramiko, socket, time, os
+import argparse, getpass, paramiko, socket, time, os, platform
 from paramiko import *
-from subprocess import DEVNULL, STDOUT, check_call
+from subprocess import DEVNULL, STDOUT, check_call, CalledProcessError
 
 
 # Parsing Help
@@ -24,6 +24,8 @@ option = ''
 action = ''
 host = []
 ips = []
+sysos = platform.system()
+is_up = False
 
 # Setting 'choice' variable with correct action
 if args.deactivate:
@@ -62,6 +64,32 @@ print('\n***********************************************\n'
       '***********************************************\n')
 
 # Check if SUPINFO's servers are accessible
+if (sysos == "Windows"):
+    with open(os.devnull, 'w') as DEVNULL:
+        try:
+            check_call(['ping', '-n', '3', os.getenv('DNS1')], stdout=DEVNULL, stderr=DEVNULL)
+            check_call(['ping', '-n', '3', os.getenv('DNS2')], stdout=DEVNULL, stderr=DEVNULL)
+            is_up = True
+        except CalledProcessError:
+            is_up = False
+elif (sysos == "Linux" or sysos == "Darwin"):
+    with open(os.devnull, 'w') as DEVNULL:
+        try:
+            check_call(['ping', '-c', '3', os.getenv('DNS1')], stdout=DEVNULL, stderr=DEVNULL)
+            check_call(['ping', '-c', '3', os.getenv('DNS2')], stdout=DEVNULL, stderr=DEVNULL)
+            is_up = True
+        except CalledProcessError:
+            is_up = False
+else:
+    print("Host OS not recognize (" + sysos + "). Trying to ping with UNIX command.\n")
+    with open(os.devnull, 'w') as DEVNULL:
+        try:
+            check_call(['ping', '-c', '3', os.getenv('DNS1')], stdout=DEVNULL, stderr=DEVNULL)
+            check_call(['ping', '-c', '3', os.getenv('DNS2')], stdout=DEVNULL, stderr=DEVNULL)
+            is_up = True
+        except CalledProcessError:
+            is_up = False   
+
 # response1 = check_call(["ping -c 1 #### TO DO ADD IPS #####"], stdout=DEVNULL, stderr=STDOUT)
 # response2 = check_call(["ping -c 1 #### TO DO ADD IPS #####"], stdout=DEVNULL, stderr=STDOUT)
 
