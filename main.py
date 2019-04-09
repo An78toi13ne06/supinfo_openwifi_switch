@@ -88,15 +88,15 @@ else:
             check_call(['ping', '-c', '3', os.getenv('DNS2')], stdout=DEVNULL, stderr=DEVNULL)
             is_up = True
         except CalledProcessError:
-            is_up = False   
+            is_up = False
 
-# response1 = check_call(["ping -c 1 #### TO DO ADD IPS #####"], stdout=DEVNULL, stderr=STDOUT)
-# response2 = check_call(["ping -c 1 #### TO DO ADD IPS #####"], stdout=DEVNULL, stderr=STDOUT)
-
-#if response1 != 0 and response2 != 0:
-#    print('You are not connected to SWN or using the VPN connection to SUPINFO network.\n'
-#          'Please restart this script when connected to SUPINFO network\n')
-#    exit()
+if is_up != True:
+    select = input('One or more SUPINFO\'s DNS server are not reachable.\n'
+          'If you are sure to be connected to SWN network, enter O [exit]: ')
+    if select == "O":
+        pass
+    else:
+        exit()
 
 # Credentials prompt
 username = input("Login: ")
