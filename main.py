@@ -44,7 +44,7 @@ dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
 # Put here IPs of WiFi controllers
-ips = os.getenv('IPS')
+ips = list(os.getenv('IPS'))
 
 print('\n***********************************************\n'
       '*    SIS/SSN - SUPINFO Systems and Network    *\n'
